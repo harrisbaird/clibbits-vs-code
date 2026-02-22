@@ -34,17 +34,13 @@ export class CopyFolderHighlightsRecursiveCommand {
           const subFiles = await this.collectFiles(fullPath, excludePatterns);
           results.push(...subFiles);
         } else {
+          // Get custom exclude extensions from settings
+          const config = vscode.workspace.getConfiguration("clibbits");
+          const allExcludes = config.get<string[]>("copyFolderExcludeExtensions", []).map(e => e.toLowerCase().startsWith('.') ? e : `.${e}`);
+
           // Only include text files
           const ext = path.extname(file).toLowerCase();
-          const isTextFile = ![
-            ".exe",
-            ".dll",
-            ".jpg",
-            ".png",
-            ".gif",
-            ".ico",
-            ".bin",
-          ].includes(ext);
+          const isTextFile = !allExcludes.includes(ext);
 
           if (isTextFile) {
             results.push(fullPath);

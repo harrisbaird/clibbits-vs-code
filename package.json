@@ -292,6 +292,21 @@
           "type": "boolean",
           "default": true,
           "description": "Enable Code Lens for adding selected code to clibbits"
+        },
+        "clibbits.copyFolderExcludeExtensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            ".exe",
+            ".dll",
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".ico",
+            ".bin"
+          ],
+          "description": "List of additional file extensions to exclude when copying folders for AI (e.g. ['.custom', '.myext'])"
         }
       }
     }
