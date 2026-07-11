@@ -2,7 +2,7 @@
   "name": "clibbits",
   "displayName": "Clibbits",
   "description": "Control your context, control your life",
-  "version": "3.20.0",
+  "version": "3.21.0",
   "publisher": "codeontherocks",
   "icon": "clibbits.png",
   "repository": {
@@ -21,6 +21,7 @@
     "onCommand:clibbits.copyFile",
     "onCommand:clibbits.copyCodeBlock",
     "onCommand:clibbits.copyFolderRecursive",
+    "onCommand:clibbits.copyScriptsRecursive",
     "onCommand:clibbits.copyFolderHighlightsRecursive",
     "onCommand:clibbits.copyWithoutComments",
     "onCommand:clibbits.copyTreeStructure",
@@ -91,6 +92,11 @@
       {
         "command": "clibbits.copyFolderRecursive",
         "title": "Copy for AI",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "clibbits.copyScriptsRecursive",
+        "title": "Copy Scripts for AI",
         "icon": "$(copy)"
       },
       {
@@ -187,6 +193,11 @@
         },
         {
           "command": "clibbits.copyFolderRecursive",
+          "group": "5_cutcopypaste",
+          "when": "explorerResourceIsFolder"
+        },
+        {
+          "command": "clibbits.copyScriptsRecursive",
           "group": "5_cutcopypaste",
           "when": "explorerResourceIsFolder"
         },
@@ -307,6 +318,14 @@
             ".bin"
           ],
           "description": "List of additional file extensions to exclude when copying folders for AI (e.g. ['.custom', '.myext'])"
+        },
+        "clibbits.copyScriptsExtensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [
+            ".cs"
+          ],
+          "description": "List of file extensions to include when using 'Copy Scripts for AI'. Only files matching these extensions are copied (e.g. ['.cs', '.ts'])"
         }
       }
     }
